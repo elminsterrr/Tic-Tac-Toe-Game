@@ -84,9 +84,9 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   justify-content: center;
   align-content: center;
   width: 360px;
-  height: 90px;
+  height: 135px;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .settings {
@@ -110,7 +110,8 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-  margin-left: 10px;
+  margin-left: 90px;
+  margin-right: 90px;
   background-color: white;
   border: none;
   color: black;
