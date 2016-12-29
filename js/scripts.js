@@ -80,7 +80,7 @@
     // Magic that makes deepMind alive
     function deepMind() {
       const r = randomNumber();
-      
+      // Select a random number between 0 and 8
       function randomNumber() {          
         function randomRange(myMin, myMax) {
           return Math.floor(Math.random() * (myMax - myMin + 1) + myMin);
@@ -166,7 +166,6 @@
       console.log(`-------- IT WAS TURN ${moves} --------`);
       console.log("---------- NEXT TURN ----------");
     }
-
     // AI should make first move only if player is playing as "o"
     if (playerAsX === false) {
       deepMind();
@@ -174,12 +173,10 @@
       // In this case only refresh display at start and wait for player move
       display();
     }
-
     // Handle main Tic Tac Toe buttons
     buttons.forEach((button) => button.addEventListener("click", playerMoves));
     // Handle "Switch Sides" button
     swButton.addEventListener("click", switchSides);
-
   }
 
   function switchSides() {
