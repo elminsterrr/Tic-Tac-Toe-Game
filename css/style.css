@@ -15,55 +15,63 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .box0 {
-  background:#1abc9c;
+  background:#91a2ac;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
 }
 
 .box1 { 
-  background:#1abc9c;
+  background:#91a2ac;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
 }
 
 .box2 {
-  background:#1abc9c;
+  background:#91a2ac;
   border-bottom: 1px solid white;
 }
 
 .box3 { 
-  background:#1abc9c;
+  background:#91a2ac;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
 }
 
 .box4 { 
-  background:#1abc9c;
+  background:#91a2ac;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
 }
 
 .box5 { 
-  background:#1abc9c;
+  background:#91a2ac;
   border-bottom: 1px solid white;
 }
 
 .box6 { 
-  background:#1abc9c;
+  background:#91a2ac;
   border-right: 1px solid white;
 }
 
 .box7 { 
-  background:#1abc9c;
+  background:#91a2ac;
   border-right: 1px solid white;
 }
 
 .box8 {
-  background:#1abc9c;
+  background:#91a2ac;
 }
 
 .container {
-  background: #d8c1ee;
+  
+  background:url('../img/1a.jpg') no-repeat;
+  background-size: cover;
+  
+  /*
+  background: #222 url('https://res.cloudinary.com/dfe57evk4/image/upload/v1469984059/hdwm4_2040.0_wncwb9.jpg') bottom center no-repeat;
+  background-size: cover;
+  */
+  
   display: flex;
   flex-direction: row;
   height: 100vh;
