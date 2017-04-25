@@ -155,5 +155,5 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 button:focus { 
-  outline:0 
-};
+  outline: 0;
+}
