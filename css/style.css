@@ -67,7 +67,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .container {
-  background: url('../img/1a.jpg') no-repeat;
+  background: url('https://res.cloudinary.com/dfe57evk4/image/upload/v1494416907/beatiful_sand_particles_lgalqn.jpg') no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: row;
