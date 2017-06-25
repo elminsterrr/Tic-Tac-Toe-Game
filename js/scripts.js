@@ -26,7 +26,7 @@
   let AIside = "x";
   let moves;
   let refreshTime;
-  
+
   function oneGame() {
     // Reset timeout
     clearTimeout(refreshTime);
@@ -37,8 +37,8 @@
     arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
     sides.textContent = `You are playing as: ' ${humanSide} '`;
     info.textContent = "";
-    console.clear();
-    
+    // console.clear();
+
     // Handle display, decode every "1" to blank space
     function display() {
       const arr2 = arr.map(function(oneElement) {
@@ -59,16 +59,15 @@
       display7.textContent = arr2[7];
       display8.textContent = arr2[8];
     }
-        
+
     // Decode user clicks to useful data
     function playerMoves() {
       const arrClicked = arr[this.dataset.array];
       // Block overwriting used square or adding moves after gameOver
-      if ((arrClicked !== humanSide && arrClicked !== AIside) && 
-          (gameOver === false)) {
+      if ((arrClicked !== humanSide && arrClicked !== AIside) && (!gameOver)) {
         arr[this.dataset.array] = humanSide;
         moves += 1;
-        console.log("Player just moved!");
+        // console.log("Player just moved!");
         winConditions();
         // Start next AI turn after checking if player or AI has won
         deepMind();
@@ -81,21 +80,21 @@
     function deepMind() {
       const r = randomNumber();
       // Select a random number between 0 and 8
-      function randomNumber() {          
+      function randomNumber() {
         function randomRange(myMin, myMax) {
           return Math.floor(Math.random() * (myMax - myMin + 1) + myMin);
         }
         return randomRange(0, 8);
       }
       // Stop when game is finished
-      if (gameOver === true) {
-        return; 
+      if (gameOver) {
+        return;
       }
       // Block overwriting used square
       if (arr[r] !== AIside && arr[r] !== humanSide) {
         arr[r] = AIside;
         moves += 1;
-        console.log("AI just moved!");
+        // console.log("AI just moved!");
         winConditions();
       } else {
         // When it is impossible to write that square,
@@ -105,23 +104,23 @@
     }
 
     function AIWins() {
-      refreshTime = setTimeout(oneGame, 5000);
+      refreshTime = setTimeout(oneGame, 1500);
       info.textContent = "Game over! You have lost!";
-      console.log("AI just won!");
+      // console.log("AI just won!");
       gameOver = true;
     }
 
     function playerWins() {
-      refreshTime = setTimeout(oneGame, 5000);
+      refreshTime = setTimeout(oneGame, 1500);
       info.textContent = "Congratulations! You have won!";
-      console.log("Player just won!");
+      // console.log("Player just won!");
       gameOver = true;
     }
 
     function drawItis() {
-      refreshTime = setTimeout(oneGame, 5000);
+      refreshTime = setTimeout(oneGame, 1500);
       info.textContent = "It was a draw!";
-      console.log("It was a draw!");
+      // console.log("It was a draw!");
       gameOver = true;
     }
 
@@ -129,7 +128,7 @@
     function winConditions() {
       let notADraw = false;
       display();
-      
+
       function compareVariables(a, b, c) {
         if (a === b && b === c && c === a) {
           if (a === AIside) {
@@ -145,11 +144,10 @@
       }
 
       function testForDraw(movesQuantity) {
-        if (movesQuantity === 9 && notADraw === false) {
-          drawItis();            
-        } else {
-          console.log("Testing for draw... It isn't draw!");
+        if (movesQuantity === 9 && !notADraw) {
+          drawItis();
         }
+        // console.log("Testing for draw... It isn't draw!");
       }
       // Testing all win conditions
       compareVariables(arr[0], arr[1], arr[2]);
@@ -163,11 +161,11 @@
       // Checking if it is a draw
       testForDraw(moves);
       // Some info for testing purpose
-      console.log(`-------- IT WAS TURN ${moves} --------`);
-      console.log("---------- NEXT TURN ----------");
+      // console.log(`-------- IT WAS TURN ${moves} --------`);
+      // console.log("---------- NEXT TURN ----------");
     }
     // AI should make first move only if player is playing as "o"
-    if (playerAsX === false) {
+    if (!playerAsX) {
       deepMind();
     } else {
       // In this case only refresh display at start and wait for player move
@@ -180,7 +178,7 @@
   }
 
   function switchSides() {
-    if (playerAsX === false) {
+    if (!playerAsX) {
       playerAsX = true;
       humanSide = "x";
       AIside = "o";
@@ -189,7 +187,7 @@
       humanSide = "o";
       AIside = "x";
     }
-    console.log("Sides switched!");
+    // console.log("Sides switched!");
     // Start new default game
     oneGame();
   }
