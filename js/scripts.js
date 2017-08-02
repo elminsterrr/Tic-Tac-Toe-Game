@@ -1,29 +1,25 @@
-// Tic Tac Toe Game v.1.0
-// Created by: Elminster White - elminsterthewhite@gmail.com
+'use strict';
 
-"use strict";
-
-// Code wrapped in a closure to avoid global variables
 (function () {
-  const buttons = document.querySelectorAll("[data-array]");
-  const display0 = document.querySelector(".display0");
-  const display1 = document.querySelector(".display1");
-  const display2 = document.querySelector(".display2");
-  const display3 = document.querySelector(".display3");
-  const display4 = document.querySelector(".display4");
-  const display5 = document.querySelector(".display5");
-  const display6 = document.querySelector(".display6");
-  const display7 = document.querySelector(".display7");
-  const display8 = document.querySelector(".display8");
-  const swButton = document.querySelector(".switch");
-  const sides = document.querySelector(".sides");
-  const info = document.querySelector(".info");
-  // Main battleground array
+  const buttons = document.querySelectorAll('[data-array]');
+  const display0 = document.querySelector('.display0');
+  const display1 = document.querySelector('.display1');
+  const display2 = document.querySelector('.display2');
+  const display3 = document.querySelector('.display3');
+  const display4 = document.querySelector('.display4');
+  const display5 = document.querySelector('.display5');
+  const display6 = document.querySelector('.display6');
+  const display7 = document.querySelector('.display7');
+  const display8 = document.querySelector('.display8');
+  const swButton = document.querySelector('.switch');
+  const sides = document.querySelector('.sides');
+  const info = document.querySelector('.info');
+
   let arr = [];
   let gameOver = false;
   let playerAsX = false;
-  let humanSide = "o";
-  let AIside = "x";
+  let humanSide = 'o';
+  let AIside = 'x';
   let moves;
   let refreshTime;
 
@@ -33,17 +29,15 @@
     // Reset all values and messages
     moves = 0;
     gameOver = false;
-    // "1" is code for empty square
-    arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+    arr = ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'];
     sides.textContent = `You are playing as: ' ${humanSide} '`;
-    info.textContent = "";
-    // console.clear();
+    info.textContent = '';
 
-    // Handle display, decode every "1" to blank space
+    // Handle display
     function display() {
       const arr2 = arr.map(function(oneElement) {
-        if (oneElement === 1) {
-          return "";
+        if (oneElement === 'empty') {
+          return '';
         } else {
           return oneElement;
         }
@@ -67,7 +61,6 @@
       if ((arrClicked !== humanSide && arrClicked !== AIside) && (!gameOver)) {
         arr[this.dataset.array] = humanSide;
         moves += 1;
-        // console.log("Player just moved!");
         winConditions();
         // Start next AI turn after checking if player or AI has won
         deepMind();
@@ -76,9 +69,8 @@
       }
     }
 
-    // Magic that makes deepMind alive
     function deepMind() {
-      const r = randomNumber();
+      const rand = randomNumber();
       // Select a random number between 0 and 8
       function randomNumber() {
         function randomRange(myMin, myMax) {
@@ -91,10 +83,9 @@
         return;
       }
       // Block overwriting used square
-      if (arr[r] !== AIside && arr[r] !== humanSide) {
-        arr[r] = AIside;
+      if (arr[rand] !== AIside && arr[rand] !== humanSide) {
+        arr[rand] = AIside;
         moves += 1;
-        // console.log("AI just moved!");
         winConditions();
       } else {
         // When it is impossible to write that square,
@@ -105,22 +96,19 @@
 
     function AIWins() {
       refreshTime = setTimeout(oneGame, 1500);
-      info.textContent = "Game over! You have lost!";
-      // console.log("AI just won!");
+      info.textContent = 'Game over! You have lost!';
       gameOver = true;
     }
 
     function playerWins() {
       refreshTime = setTimeout(oneGame, 1500);
-      info.textContent = "Congratulations! You have won!";
-      // console.log("Player just won!");
+      info.textContent = 'Congratulations! You have won!';
       gameOver = true;
     }
 
     function drawItis() {
       refreshTime = setTimeout(oneGame, 1500);
-      info.textContent = "It was a draw!";
-      // console.log("It was a draw!");
+      info.textContent = 'It was a draw!';
       gameOver = true;
     }
 
@@ -147,8 +135,8 @@
         if (movesQuantity === 9 && !notADraw) {
           drawItis();
         }
-        // console.log("Testing for draw... It isn't draw!");
       }
+
       // Testing all win conditions
       compareVariables(arr[0], arr[1], arr[2]);
       compareVariables(arr[3], arr[4], arr[5]);
@@ -160,11 +148,8 @@
       compareVariables(arr[2], arr[4], arr[6]);
       // Checking if it is a draw
       testForDraw(moves);
-      // Some info for testing purpose
-      // console.log(`-------- IT WAS TURN ${moves} --------`);
-      // console.log("---------- NEXT TURN ----------");
     }
-    // AI should make first move only if player is playing as "o"
+    // AI should make first move only if player is playing as 'o'
     if (!playerAsX) {
       deepMind();
     } else {
@@ -172,22 +157,22 @@
       display();
     }
     // Handle main Tic Tac Toe buttons
-    buttons.forEach((button) => button.addEventListener("click", playerMoves));
-    // Handle "Switch Sides" button
-    swButton.addEventListener("click", switchSides);
+    buttons.forEach((button) => button.addEventListener('click', playerMoves));
+    // Handle 'Switch Sides' button
+    swButton.addEventListener('click', switchSides);
   }
 
   function switchSides() {
     if (!playerAsX) {
       playerAsX = true;
-      humanSide = "x";
-      AIside = "o";
+      humanSide = 'x';
+      AIside = 'o';
     } else {
       playerAsX = false;
-      humanSide = "o";
-      AIside = "x";
+      humanSide = 'o';
+      AIside = 'x';
     }
-    // console.log("Sides switched!");
+
     // Start new default game
     oneGame();
   }
